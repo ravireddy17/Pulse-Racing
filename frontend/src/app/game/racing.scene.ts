@@ -4,6 +4,7 @@ import { RaceSnapshot, TrackDefinition } from './race.models';
 const WORLD_WIDTH = 1800;
 const WORLD_HEIGHT = 1050;
 const ROAD_WIDTH = 170;
+const PROGRESS_GATE_RADIUS = ROAD_WIDTH / 2 + 24;
 const TOTAL_LAPS = 3;
 const MAX_ROAD_SPEED = 460;
 const MAX_OFFROAD_SPEED = 175;
@@ -147,7 +148,7 @@ export class RacingScene extends Phaser.Scene {
     for (const pointIndex of this.checkpointIndexes) {
       const point = this.trackPoints[pointIndex];
       graphics.fillStyle(0x50e3c2, 0.2);
-      graphics.fillCircle(point.x, point.y, 45);
+      graphics.fillCircle(point.x, point.y, PROGRESS_GATE_RADIUS);
     }
   }
 
@@ -248,7 +249,7 @@ export class RacingScene extends Phaser.Scene {
 
   private updateProgress(): void {
     const checkpointPoint = this.trackPoints[this.checkpointIndexes[this.nextCheckpoint]];
-    if (checkpointPoint && checkpointPoint.distance(this.car) < 72) {
+    if (checkpointPoint && checkpointPoint.distance(this.car) <= PROGRESS_GATE_RADIUS) {
       this.nextCheckpoint += 1;
     }
     if (this.nextCheckpoint < this.checkpointIndexes.length) {
@@ -256,7 +257,7 @@ export class RacingScene extends Phaser.Scene {
     }
 
     const start = this.trackPoints[0];
-    if (start.distance(this.car) < 78) {
+    if (start.distance(this.car) <= PROGRESS_GATE_RADIUS) {
       this.nextCheckpoint = 0;
       if (this.lap >= TOTAL_LAPS) {
         this.finishRace();
