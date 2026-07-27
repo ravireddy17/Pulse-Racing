@@ -44,7 +44,8 @@ public class SecurityConfig {
                                 "/login")
                         .permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/leaderboard").permitAll()
-                        .anyRequest().authenticated())
+                        .requestMatchers("/api/**").authenticated()
+                        .anyRequest().permitAll())
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
                 .build();
     }

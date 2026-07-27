@@ -40,6 +40,12 @@ class AuthControllerIntegrationTests {
     }
 
     @Test
+    void servesApplicationRootWithoutAuthentication() throws Exception {
+        mockMvc.perform(get("/"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
     void registersUserAndReturnsBearerToken() throws Exception {
         mockMvc.perform(post("/register")
                         .contentType(MediaType.APPLICATION_JSON)
