@@ -1,0 +1,36 @@
+<main class="hub">
+  <header class="hub__header">
+    <a class="wordmark" routerLink="/">Pulse Racing</a>
+    <div class="driver">
+      <div>
+        <small>Driver</small>
+        <strong>{{ authStore.user()?.username }}</strong>
+      </div>
+      <button mat-button type="button" (click)="logout()">Logout</button>
+    </div>
+  </header>
+
+  <section class="hub__content" aria-labelledby="hub-title">
+    <p class="hub__eyebrow">Race hub</p>
+    <h1 id="hub-title">Choose your line</h1>
+
+    <nav class="menu" aria-label="Game menu">
+      <a class="menu__primary" routerLink="/race/green-hills">
+        <span>01</span>
+        <strong>Continue</strong>
+        <small>Green Hills</small>
+      </a>
+      <a routerLink="/tracks"><span>02</span><strong>New game</strong></a>
+      <a routerLink="/garage"><span>03</span><strong>Garage</strong></a>
+      <a routerLink="/leaderboard"><span>04</span><strong>Leaderboards</strong></a>
+      <a routerLink="/profile"><span>05</span><strong>Profile</strong></a>
+      <a routerLink="/settings"><span>06</span><strong>Settings</strong></a>
+    </nav>
+  </section>
+
+  <footer class="hub__footer">
+    <span>Level {{ profile()?.highestLevel ?? 1 }}</span>
+    <span>{{ profile()?.coins ?? 0 }} coins</span>
+    <span>{{ profile()?.experience ?? 0 }} XP</span>
+  </footer>
+</main>

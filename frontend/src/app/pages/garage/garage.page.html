@@ -1,0 +1,38 @@
+<main class="page">
+  <header class="page__header">
+    <a class="page__brand" routerLink="/dashboard">Pulse Racing</a>
+    <a mat-button routerLink="/dashboard">Race hub</a>
+  </header>
+  <section class="page__content" aria-labelledby="garage-title">
+    <p class="page__eyebrow">Garage</p>
+    <h1 class="page__title" id="garage-title">Choose your finish</h1>
+
+    @if (profile(); as driver) {
+      <div class="car-stage">
+        <div class="car" [attr.data-color]="driver.selectedCarColor">
+          <span class="car__glass"></span>
+          <span class="car__wheel car__wheel--front"></span>
+          <span class="car__wheel car__wheel--rear"></span>
+        </div>
+      </div>
+
+      <div class="swatches" aria-label="Car color">
+        @for (color of colors; track color) {
+          <button
+            type="button"
+            [attr.aria-label]="color.toLowerCase()"
+            [attr.aria-pressed]="driver.selectedCarColor === color"
+            [class.selected]="driver.selectedCarColor === color"
+            [attr.data-color]="color"
+            (click)="selectColor(color)"
+          ><span class="sr-only">{{ color }}</span></button>
+        }
+      </div>
+    } @else {
+      <p class="status">Loading garage...</p>
+    }
+    @if (message()) {
+      <p class="status" role="status">{{ message() }}</p>
+    }
+  </section>
+</main>

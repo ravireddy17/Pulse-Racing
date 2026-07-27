@@ -1,0 +1,43 @@
+<main class="auth-layout">
+  <a class="auth-layout__brand" routerLink="/">Pulse Racing</a>
+  <section class="auth-panel" aria-labelledby="login-title">
+    <p class="auth-panel__eyebrow">Driver access</p>
+    <h1 id="login-title">Welcome back</h1>
+    <p class="auth-panel__intro">Your next fastest lap is waiting.</p>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" autocomplete="email" />
+        @if (form.controls.email.touched && form.controls.email.invalid) {
+          <mat-error>Enter a valid email address</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          type="password"
+          formControlName="password"
+          autocomplete="current-password"
+        />
+        @if (form.controls.password.touched && form.controls.password.invalid) {
+          <mat-error>Password is required</mat-error>
+        }
+      </mat-form-field>
+
+      @if (errorMessage()) {
+        <p class="form-error" role="alert">{{ errorMessage() }}</p>
+      }
+
+      <button mat-flat-button type="submit" [disabled]="submitting()">
+        {{ submitting() ? 'Signing in...' : 'Login' }}
+      </button>
+    </form>
+
+    <p class="auth-panel__switch">
+      New to the grid? <a routerLink="/register">Create an account</a>
+    </p>
+  </section>
+</main>

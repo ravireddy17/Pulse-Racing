@@ -1,0 +1,53 @@
+<main class="race">
+  <div #gameHost class="race__canvas" aria-label="Top-down racing game"></div>
+
+  @if (track) {
+    <header class="hud">
+      <div>
+        <small>{{ track.name }}</small>
+        <strong>Lap {{ engine.state().lap }} / {{ engine.state().totalLaps }}</strong>
+      </div>
+      <div class="hud__time">
+        <small>Elapsed</small>
+        <strong>{{ formatTime(engine.state().elapsedMs) }}</strong>
+      </div>
+      <div>
+        <small>Best</small>
+        <strong>{{ formatTime(engine.state().bestTimeMs) }}</strong>
+      </div>
+    </header>
+
+    <aside class="speed" aria-label="Current speed">
+      <strong>{{ engine.state().speed }}</strong>
+      <small>km/h</small>
+    </aside>
+
+    <div class="controls">
+      <span>Arrows</span>
+      <span>Space: restart</span>
+      <span>Esc: pause</span>
+    </div>
+
+    @if (engine.state().paused) {
+      <section class="race-dialog" aria-labelledby="paused-title">
+        <small>Race suspended</small>
+        <h1 id="paused-title">Paused</h1>
+        <p>Press Escape to return to the track.</p>
+        <button mat-stroked-button type="button" (click)="exit()">Exit race</button>
+      </section>
+    }
+
+    @if (engine.state().finished) {
+      <section class="race-dialog" aria-labelledby="finished-title">
+        <small>Race complete</small>
+        <h1 id="finished-title">Finished</h1>
+        <p>{{ formatTime(engine.state().elapsedMs) }}</p>
+        @if (saveStatus()) { <small role="status">{{ saveStatus() }}</small> }
+        <div>
+          <button mat-flat-button type="button" (click)="engine.restart()">Race again</button>
+          <button mat-button type="button" (click)="exit()">Race hub</button>
+        </div>
+      </section>
+    }
+  }
+</main>

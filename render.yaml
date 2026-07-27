@@ -1,0 +1,39 @@
+services:
+  - type: web
+    name: pulse-racing
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /actuator/health
+    maxShutdownDelaySeconds: 30
+    envVars:
+      - key: DATABASE_HOST
+        fromDatabase:
+          name: pulse-racing-db
+          property: host
+      - key: DATABASE_PORT
+        fromDatabase:
+          name: pulse-racing-db
+          property: port
+      - key: DATABASE_NAME
+        fromDatabase:
+          name: pulse-racing-db
+          property: database
+      - key: DATABASE_USERNAME
+        fromDatabase:
+          name: pulse-racing-db
+          property: user
+      - key: DATABASE_PASSWORD
+        fromDatabase:
+          name: pulse-racing-db
+          property: password
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_ISSUER
+        value: pulse-racing-api
+databases:
+  - name: pulse-racing-db
+    plan: free
+    databaseName: pulse_racing
+    user: pulse

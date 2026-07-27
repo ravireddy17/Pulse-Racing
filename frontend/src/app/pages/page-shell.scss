@@ -1,0 +1,47 @@
+.page {
+  min-height: 100dvh;
+  padding: clamp(1.25rem, 4vw, 3rem);
+  background:
+    linear-gradient(100deg, rgb(8 10 13 / 98%), rgb(8 10 13 / 84%)),
+    url('/images/foundation-track.png') center / cover fixed;
+}
+
+.page__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.page__brand {
+  font-weight: 900;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.page__content {
+  width: min(100%, 70rem);
+  margin: clamp(4rem, 9vh, 7rem) auto 0;
+}
+
+.page__eyebrow {
+  margin: 0;
+  color: var(--color-accent);
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.page__title {
+  margin: 0.5rem 0 2.5rem;
+  font-size: clamp(2.75rem, 7vw, 6rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.status {
+  color: var(--color-text-muted);
+}
+
+.error {
+  color: var(--color-danger);
+}

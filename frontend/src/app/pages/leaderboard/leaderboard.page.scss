@@ -1,0 +1,29 @@
+.standings > div {
+  display: grid;
+  grid-template-columns: 5rem 1fr 10rem 5rem;
+  gap: 1rem;
+  align-items: center;
+  min-height: 4rem;
+  padding-inline: 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.standings__head {
+  color: var(--color-text-muted);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.standings strong {
+  color: var(--color-accent);
+}
+
+.standings time {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 36rem) {
+  .standings > div { grid-template-columns: 3rem 1fr 7rem; }
+  .standings > div > :last-child { display: none; }
+}

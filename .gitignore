@@ -1,0 +1,9 @@
+.idea/
+.vscode/
+*.iml
+.env
+.vercel/
+frontend/node_modules/
+frontend/dist/
+backend/target/
+*.log

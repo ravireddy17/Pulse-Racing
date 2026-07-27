@@ -1,0 +1,73 @@
+.car-stage {
+  min-height: 22rem;
+  display: grid;
+  place-items: center;
+  border-block: 1px solid var(--border-subtle);
+  background: radial-gradient(circle at center, rgb(255 255 255 / 9%), transparent 56%);
+}
+
+.car {
+  position: relative;
+  width: min(70vw, 30rem);
+  aspect-ratio: 2.4;
+  border-radius: 36% 48% 24% 22%;
+  background: #d62f2f;
+  box-shadow: inset -2rem -1rem 2rem rgb(0 0 0 / 34%), 0 2rem 4rem rgb(0 0 0 / 36%);
+  transform: perspective(50rem) rotateX(8deg) rotateY(-18deg);
+}
+
+.car[data-color='BLUE'] { background: #2878d0; }
+.car[data-color='BLACK'] { background: #15171a; }
+.car[data-color='WHITE'] { background: #e8ecee; }
+.car[data-color='SILVER'] { background: #9ba2a8; }
+
+.car__glass {
+  position: absolute;
+  top: 12%;
+  left: 38%;
+  width: 36%;
+  height: 45%;
+  border-radius: 40% 55% 20% 10%;
+  background: #132633;
+  border: 2px solid rgb(255 255 255 / 24%);
+}
+
+.car__wheel {
+  position: absolute;
+  bottom: -12%;
+  width: 18%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #090a0c;
+  border: 0.5rem solid #24282d;
+}
+
+.car__wheel--front { right: 12%; }
+.car__wheel--rear { left: 12%; }
+
+.swatches {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem 0;
+}
+
+.swatches button {
+  width: 2.75rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  outline: 1px solid var(--border-subtle);
+  background: #d62f2f;
+  cursor: pointer;
+}
+
+.swatches button[data-color='BLUE'] { background: #2878d0; }
+.swatches button[data-color='BLACK'] { background: #15171a; }
+.swatches button[data-color='WHITE'] { background: #e8ecee; }
+.swatches button[data-color='SILVER'] { background: #9ba2a8; }
+.swatches button.selected { border-color: var(--color-accent); }
+
+.status {
+  text-align: center;
+}

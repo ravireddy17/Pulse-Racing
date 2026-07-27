@@ -1,0 +1,29 @@
+<main class="tracks">
+  <header>
+    <a routerLink="/dashboard">Pulse Racing</a>
+    <a mat-button routerLink="/dashboard">Back</a>
+  </header>
+
+  <section aria-labelledby="tracks-title">
+    <p>Select circuit</p>
+    <h1 id="tracks-title">Choose the next race</h1>
+
+    <div class="track-list">
+      @for (track of tracks; track track.id; let index = $index) {
+        @if (isUnlocked(track.id)) {
+          <a [routerLink]="['/race', track.id]" [class.track--desert]="track.id === 'desert-track'">
+            <span>0{{ index + 1 }}</span>
+            <div><h2>{{ track.name }}</h2><p>{{ track.subtitle }}</p></div>
+            <strong>3 laps</strong>
+          </a>
+        } @else {
+          <div class="track-locked track--desert">
+            <span>0{{ index + 1 }}</span>
+            <div><h2>{{ track.name }}</h2><p>Complete Green Hills to unlock</p></div>
+            <strong>Locked</strong>
+          </div>
+        }
+      }
+    </div>
+  </section>
+</main>

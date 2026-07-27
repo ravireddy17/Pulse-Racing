@@ -1,0 +1,25 @@
+<main class="page">
+  <header class="page__header">
+    <a class="page__brand" routerLink="/dashboard">Pulse Racing</a>
+    <a mat-button routerLink="/dashboard">Race hub</a>
+  </header>
+  <section class="page__content" aria-labelledby="settings-title">
+    <p class="page__eyebrow">Preferences</p>
+    <h1 class="page__title" id="settings-title">Settings</h1>
+
+    <div class="setting">
+      <div><strong>Master volume</strong><span>{{ volume() }}%</span></div>
+      <mat-slider min="0" max="100" step="5" discrete>
+        <input matSliderThumb [ngModel]="volume()" (ngModelChange)="volume.set($event)" />
+      </mat-slider>
+    </div>
+    <div class="setting setting--toggle">
+      <div><strong>Reduced motion</strong><span>Limit interface animation</span></div>
+      <mat-slide-toggle [ngModel]="reducedMotion()" (ngModelChange)="reducedMotion.set($event)">
+        <span class="sr-only">Reduced motion</span>
+      </mat-slide-toggle>
+    </div>
+    <button mat-flat-button type="button" (click)="save()">Save settings</button>
+    @if (message()) { <p class="status" role="status">{{ message() }}</p> }
+  </section>
+</main>

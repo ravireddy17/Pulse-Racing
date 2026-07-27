@@ -1,0 +1,34 @@
+<main class="landing">
+  <header class="landing__header">
+    <a class="wordmark" routerLink="/" aria-label="Pulse Racing home">PULSE</a>
+    <nav aria-label="Account navigation">
+      @if (authStore.isAuthenticated()) {
+        <a mat-stroked-button routerLink="/dashboard">Race hub</a>
+      } @else {
+        <a mat-button routerLink="/login">Login</a>
+        <a mat-stroked-button routerLink="/register">Register</a>
+      }
+    </nav>
+  </header>
+
+  <section class="hero" aria-labelledby="hero-title">
+    <p class="hero__kicker">Your line. Your time.</p>
+    <h1 id="hero-title"><span>Pulse</span> Racing</h1>
+    <p class="hero__copy">Push through every apex and leave your fastest lap behind.</p>
+    <div class="hero__actions">
+      <button mat-flat-button type="button" (click)="play()">Play now</button>
+      <a mat-button routerLink="/leaderboard">Leaderboard</a>
+      @if (authStore.isAuthenticated()) {
+        <a mat-button routerLink="/settings">Settings</a>
+      }
+    </div>
+  </section>
+
+  <div class="track-meta" aria-label="Featured track">
+    <span>01</span>
+    <div>
+      <strong>Green Hills</strong>
+      <small>Technical circuit</small>
+    </div>
+  </div>
+</main>

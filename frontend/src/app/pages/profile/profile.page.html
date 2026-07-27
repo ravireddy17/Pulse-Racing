@@ -1,0 +1,32 @@
+<main class="page">
+  <header class="page__header">
+    <a class="page__brand" routerLink="/dashboard">Pulse Racing</a>
+    <a mat-button routerLink="/dashboard">Race hub</a>
+  </header>
+  <section class="page__content" aria-labelledby="profile-title">
+    <p class="page__eyebrow">Driver profile</p>
+    <h1 class="page__title" id="profile-title">{{ profile()?.username ?? 'Loading' }}</h1>
+
+    @if (profile(); as driver) {
+      <dl class="stats">
+        <div><dt>Coins</dt><dd>{{ driver.coins }}</dd></div>
+        <div><dt>Experience</dt><dd>{{ driver.experience }} XP</dd></div>
+        <div><dt>Races</dt><dd>{{ driver.gamesPlayed }}</dd></div>
+        <div><dt>Best time</dt><dd>{{ formatTime(driver.bestTimeMs) }}</dd></div>
+        <div><dt>Highest level</dt><dd>{{ driver.highestLevel }}</dd></div>
+        <div><dt>Joined</dt><dd>{{ driver.dateJoined.slice(0, 10) }}</dd></div>
+      </dl>
+      <div class="identity">
+        <mat-form-field appearance="outline">
+          <mat-label>Username</mat-label>
+          <input matInput [formControl]="username" />
+          @if (username.touched && username.invalid) {
+            <mat-error>Use 3-30 letters, numbers, or underscores</mat-error>
+          }
+        </mat-form-field>
+        <button mat-flat-button type="button" (click)="saveUsername()">Save</button>
+      </div>
+    }
+    @if (message()) { <p class="status" role="status">{{ message() }}</p> }
+  </section>
+</main>

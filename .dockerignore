@@ -1,0 +1,10 @@
+.git
+.github
+.idea
+.vscode
+.env
+**/node_modules
+**/dist
+**/target
+**/*.log
+hs_err_pid*.log

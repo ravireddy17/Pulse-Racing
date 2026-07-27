@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: pulse-racing-api
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://${DATABASE_HOST:localhost}:${DATABASE_PORT:5432}/${DATABASE_NAME:pulse_racing}}
+    username: ${DATABASE_USERNAME:pulse}
+    password: ${DATABASE_PASSWORD:pulse}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+
+server:
+  port: ${PORT:8080}
+  shutdown: graceful
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: never
+
+spring.lifecycle.timeout-per-shutdown-phase: 20s
+
+app:
+  cors:
+    allowed-origin: ${CORS_ALLOWED_ORIGIN:http://localhost:4200}
+  jwt:
+    secret: ${JWT_SECRET:development-only-secret-change-me-now}
+    expiration: ${JWT_EXPIRATION:PT24H}
+    issuer: ${JWT_ISSUER:pulse-racing-api}

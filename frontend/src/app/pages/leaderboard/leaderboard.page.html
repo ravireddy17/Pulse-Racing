@@ -1,0 +1,25 @@
+<main class="page">
+  <header class="page__header">
+    <a class="page__brand" routerLink="/">Pulse Racing</a>
+    <a mat-button routerLink="/">Home</a>
+  </header>
+  <section class="page__content" aria-labelledby="leaderboard-title">
+    <p class="page__eyebrow">Global ranking</p>
+    <h1 class="page__title" id="leaderboard-title">Fastest twenty</h1>
+
+    @if (loading()) {
+      <p class="status">Loading standings...</p>
+    } @else if (failed()) {
+      <p class="error">Standings are unavailable.</p>
+    } @else if (entries().length === 0) {
+      <p class="status">No completed races yet.</p>
+    } @else {
+      <div class="standings">
+        <div class="standings__head"><span>Rank</span><span>Driver</span><span>Best time</span><span>Wins</span></div>
+        @for (entry of entries(); track entry.rank) {
+          <div><strong>{{ entry.rank }}</strong><span>{{ entry.username }}</span><time>{{ formatTime(entry.bestTimeMs) }}</time><span>{{ entry.totalWins }}</span></div>
+        }
+      </div>
+    }
+  </section>
+</main>
