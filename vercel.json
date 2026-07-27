@@ -4,6 +4,10 @@
   "framework": "angular",
   "rewrites": [
     {
+      "source": "/api/:path*",
+      "destination": "https://pulse-racing.onrender.com/api/:path*"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
