@@ -6,7 +6,6 @@ services:
     dockerfilePath: ./Dockerfile
     dockerContext: .
     healthCheckPath: /actuator/health
-    maxShutdownDelaySeconds: 30
     envVars:
       - key: DATABASE_HOST
         fromDatabase:
